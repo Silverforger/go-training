@@ -23,6 +23,7 @@ type DataStruc struct {
 	contacts []Contact
 }
 
+// handler function checks if URL is valid and runs process and processID functions based on input url
 func (db *DataStruc) handler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var ID int
@@ -36,6 +37,8 @@ func (db *DataStruc) handler() http.HandlerFunc {
 	}
 }
 
+// process function handles all methods associated to /contacts, such as POST and GET for db.contacts
+// PUT and DELETE is not allowed in this function.
 func (db *DataStruc) process(w http.ResponseWriter, r *http.Request) {
 	var contact Contact
 	switch r.Method {
@@ -77,6 +80,8 @@ func (db *DataStruc) process(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// processID function takes in an ID input and either deletes that ID or updates it based on the method applied (PUT/DELETE).
+// GET method is also allowed here, but POST is not.
 func (db *DataStruc) processID(id int, w http.ResponseWriter, r *http.Request) {
 	var contact Contact
 	switch r.Method {
@@ -141,6 +146,7 @@ func (db *DataStruc) processID(id int, w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// main function for running the server.
 func main() {
 	db := DataStruc{contacts: []Contact{}}
 	http.ListenAndServe(":8080", db.handler())
