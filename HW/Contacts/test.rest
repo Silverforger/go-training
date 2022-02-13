@@ -1,0 +1,38 @@
+## Test 1 | Check whole contacts, empty on initial run # 
+# GET http://localhost:8080/contacts
+
+## Test 2 | Successfully add a unique item, duplicates return error 409 # POST http://localhost:8080/contacts
+
+# {"last" : "Borlagdan", "first" : "Pierre", "company" : "DSG", "address" : "BGC", "country" : "Philippines", "position" : "Software Engineer"}
+
+# {"last" : "Bonk", "first" : "Bonkers", "company" : "Bonkeronii", "address" : "BonkCity", "country" : "BonkLand", "position" : "Bonker"}
+
+# {"last" : "My friend Hans Zimmer", "first" : "Uhhhh", "company" : "Not sure", "address" : "NA", "country" : "Where", "position" : "Huh?"}
+
+## Test 3 | Delete specified item # DELETE http://localhost:8080/contacts/1
+
+## Test 4 | Replace item details but keep original ID # PUT http://localhost:8080/contacts/2
+
+# {"last" : "Test", "first" : "Testing", "company" : "Test", "address" : "Tests", "country" : "Te", "position" : "St"}
+
+## Test 5 | Check if it returns an error 405 for POSTing at /contacts/{id} # POST http://localhost:8080/contacts/1
+
+# {"last" : "My friend Hans Zimmer", "first" : "Uhhhh", "company" : "Not sure", "address" : "NA", "country" : "Where", "position" : "Huh?"}
+
+## Test 6 | Return whole list, a specific item, or an error if doesn't exist # GET http://localhost:8080/contacts/0
+
+## Test 7 | Should return an error 405 not allowed # PUT http://localhost:8080/contacts
+
+# {"last" : "Test", "first" : "Testing", "company" : "Test", "address" : "Tests", "country" : "Te", "position" : "St"}
+
+## Test 8 | Should return an error 404 not found # PUT http://localhost:8080/contacts/5
+
+# {"last" : "Test", "first" : "Testing", "company" : "Test", "address" : "Tests", "country" : "Te", "position" : "St"}
+
+## Test 9 | DELETE at /contacts is not allowed # DELETE http://localhost:8080/contacts
+
+# {"last" : "Test", "first" : "Testing", "company" : "Test", "address" : "Tests", "country" : "Te", "position" : "St"}
+
+## Test 10 | DELETE item that doesn't exist returns error 404 not found # DELETE http://localhost:8080/contacts/21
+
+# {"last" : "Test", "first" : "Testing", "company" : "Test", "address" : "Tests", "country" : "Te", "position" : "St"}

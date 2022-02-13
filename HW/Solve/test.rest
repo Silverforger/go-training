@@ -1,0 +1,3 @@
+### Test webserver ### Default Test: 1,0,2,9,0,2,1,8,4,-3,0,-2
+
+POST http://localhost:8080/solve?coef=1,0,2,9,0,2,1,8,4,-3,0,-2
